@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -8,6 +8,9 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const location = useLocation();
+    const isArtistPage = location.pathname.startsWith('/bella-nina');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,7 +24,13 @@ const Navbar = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const navLinks = [
+    interface NavItem {
+        name: string;
+        path: string;
+        dropdown?: { name: string; path: string }[];
+    }
+
+    const mainNavLinks: NavItem[] = [
         { name: "Home", path: "/" },
         {
             name: "Bella Nina",
@@ -34,8 +43,17 @@ const Navbar = () => {
         },
         { name: "Music", path: "/music" },
         { name: "Videos", path: "/videos" },
-        { name: "Reach Us", path: "#contact" },
+        { name: "Reach Us", path: "/#contact" },
     ];
+
+    const artistNavLinks: NavItem[] = [
+        { name: "Home", path: "/bella-nina" },
+        { name: "Music", path: "/bella-nina/music" },
+        { name: "Videos", path: "/bella-nina/video" },
+        { name: "#BELLAVERSE", path: "/bella-nina/bellaverse" },
+    ];
+
+    const navLinks = isArtistPage ? artistNavLinks : mainNavLinks;
 
     return (
         <nav
@@ -47,16 +65,18 @@ const Navbar = () => {
             <div className="container mx-auto px-4 md:px-6">
                 <div className="flex items-center justify-between h-16 md:h-20">
                     {/* Logo */}
-                    <Link to="/" className="flex items-center gap-2 group">
-                        <div className="h-10 w-10 rounded-full border border-white/10 group-hover:border-primary/50 transition-colors overflow-hidden shrink-0">
-                            <img
-                                src="https://vibestream.lovable.app/assets/vibe-logo-B5km9LKB.jpeg"
-                                alt="Vibe Stream Records"
-                                className="h-full w-full object-cover"
-                            />
-                        </div>
+                    <Link to={isArtistPage ? "/bella-nina" : "/"} className="flex items-center gap-2 group">
+                        {!isArtistPage && (
+                            <div className="h-10 w-10 rounded-full border border-white/10 group-hover:border-primary/50 transition-colors overflow-hidden shrink-0">
+                                <img
+                                    src="https://vibestream.lovable.app/assets/vibe-logo-B5km9LKB.jpeg"
+                                    alt="Vibe Stream Records"
+                                    className="h-full w-full object-cover"
+                                />
+                            </div>
+                        )}
                         <span className="text-xl font-bold font-display tracking-tighter text-white group-hover:text-primary transition-colors">
-                            VIBES.RECORDS
+                            {isArtistPage ? "BELLA NINA" : "VIBES.RECORDS"}
                         </span>
                     </Link>
 

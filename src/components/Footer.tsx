@@ -25,25 +25,34 @@ const Footer = () => {
                     <div className="space-y-4">
                         <h4 className="text-lg font-semibold text-white">Reach Us</h4>
                         <div className="space-y-3">
-                            <a href={`mailto:${isArtistPage ? "bella.vibestream.in@gmail.com" : "vibestream.in@gmail.com"}`} className="flex items-center text-white/60 hover:text-primary transition-colors">
-                                <Mail className="h-5 w-5 mr-3" />
-                                {isArtistPage ? "bella.vibestream.in@gmail.com" : "vibestream.in@gmail.com"}
-                            </a>
-                            {isArtistPage && (
-                                <a href="mailto:vibestream.in@gmail.com" className="flex items-center text-white/60 hover:text-primary transition-colors">
-                                    <Mail className="h-5 w-5 mr-3 opacity-0" /> {/* Spacer icon for alignment */}
-                                    vibestream.in@gmail.com
-                                </a>
-                            )}
-                            {!isArtistPage && (
-                                <div className="flex items-start text-white/60">
-                                    <MapPin className="h-5 w-5 mr-3 mt-1 shrink-0" />
-                                    <span>
-                                        2298, 1007 N Orange St. 4th Floor<br />
-                                        Wilmington, DE 19801<br />
-                                        United States
-                                    </span>
+                            {isArtistPage ? (
+                                <div className="space-y-2 text-white/60">
+                                    <p className="font-medium text-white">Bella Nina Artist Management:</p>
+                                    <p>Vibe Stream Records</p>
+                                    <a href="mailto:vibestream.in@gmail.com" className="flex items-center hover:text-primary transition-colors">
+                                        <Mail className="h-4 w-4 mr-2" />
+                                        vibestream.in@gmail.com
+                                    </a>
+                                    <a href="tel:+15166191450" className="flex items-center hover:text-primary transition-colors">
+                                        <span className="mr-2">📞</span>
+                                        +1 (516) 619-1450
+                                    </a>
                                 </div>
+                            ) : (
+                                <>
+                                    <a href="mailto:vibestream.in@gmail.com" className="flex items-center text-white/60 hover:text-primary transition-colors">
+                                        <Mail className="h-5 w-5 mr-3" />
+                                        vibestream.in@gmail.com
+                                    </a>
+                                    <div className="flex items-start text-white/60">
+                                        <MapPin className="h-5 w-5 mr-3 mt-1 shrink-0" />
+                                        <span>
+                                            2298, 1007 N Orange St. 4th Floor<br />
+                                            Wilmington, DE 19801<br />
+                                            United States
+                                        </span>
+                                    </div>
+                                </>
                             )}
                         </div>
                     </div>

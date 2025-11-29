@@ -10,7 +10,7 @@ const Navbar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const location = useLocation();
-    const isArtistPage = location.pathname.startsWith('/bella-nina');
+    const isArtistPage = location.pathname.startsWith('/bella-nina') || window.location.hostname.includes('bellanina');
 
     useEffect(() => {
         const handleScroll = () => {

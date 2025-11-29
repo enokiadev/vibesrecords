@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 const Footer = () => {
     const location = useLocation();
-    const isArtistPage = location.pathname.startsWith('/bella-nina');
+    const isArtistPage = location.pathname.startsWith('/bella-nina') || window.location.hostname.includes('bellanina');
 
     return (
         <footer id="contact" className="bg-black border-t border-white/10 pt-16 pb-8">

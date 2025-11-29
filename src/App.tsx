@@ -14,7 +14,7 @@ const App = () => (
     <ScrollToAnchor />
     <Layout>
       <Routes>
-        <Route path="/" element={<Index />} />
+        <Route path="/" element={window.location.hostname.includes('bellanina') ? <BellaNina /> : <Index />} />
         <Route path="/bella-nina" element={<BellaNina />} />
         <Route path="/bella-nina/music" element={<BellaNinaMusic />} />
         <Route path="/bella-nina/video" element={<BellaNinaVideo />} />

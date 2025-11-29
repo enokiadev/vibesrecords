@@ -29,6 +29,12 @@ const Footer = () => {
                                 <Mail className="h-5 w-5 mr-3" />
                                 {isArtistPage ? "bella.vibestream.in@gmail.com" : "vibestream.in@gmail.com"}
                             </a>
+                            {isArtistPage && (
+                                <a href="mailto:vibestream.in@gmail.com" className="flex items-center text-white/60 hover:text-primary transition-colors">
+                                    <Mail className="h-5 w-5 mr-3 opacity-0" /> {/* Spacer icon for alignment */}
+                                    vibestream.in@gmail.com
+                                </a>
+                            )}
                             {!isArtistPage && (
                                 <div className="flex items-start text-white/60">
                                     <MapPin className="h-5 w-5 mr-3 mt-1 shrink-0" />
